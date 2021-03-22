@@ -15,4 +15,7 @@ jobs:
           pip install -r requirements.txt
           python model.py
           
-          echo "Model ran sucessfully."
+          echo "## Model Metrics" >> report.md
+          cml-publish model_results.png --md >> report.md
+          
+          cml-send-comment report.md
