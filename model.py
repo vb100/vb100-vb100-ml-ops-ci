@@ -50,6 +50,7 @@ print(tf.__version__)
 # Create features
 X = np.arange(-100, 100, 4)
 
+
 # Create labels
 y = np.arange(-90, 110, 4)
 
@@ -65,6 +66,7 @@ y_test = y[40:]
 # Take a single example of X
 input_shape = X[0].shape 
 
+
 # Take a single example of y
 output_shape = y[0].shape
 
@@ -78,10 +80,12 @@ model = tf.keras.Sequential([
     #tf.keras.layers.Dense(1)
     ])
 
+
 # Compile the model
 model.compile(loss = tf.keras.losses.mae,
               optimizer = tf.keras.optimizers.SGD(),
               metrics = ['mae'])
+
 
 # Fit the model
 model.fit(X_train, y_train, epochs=100)
