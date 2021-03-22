@@ -50,7 +50,6 @@ print(tf.__version__)
 # Create features
 X = np.arange(-100, 100, 4)
 
-
 # Create labels
 y = np.arange(-90, 110, 4)
 
@@ -66,7 +65,6 @@ y_test = y[40:]
 # Take a single example of X
 input_shape = X[0].shape 
 
-
 # Take a single example of y
 output_shape = y[0].shape
 
@@ -80,12 +78,10 @@ model = tf.keras.Sequential([
     #tf.keras.layers.Dense(1)
     ])
 
-
 # Compile the model
 model.compile(loss = tf.keras.losses.mae,
               optimizer = tf.keras.optimizers.SGD(),
               metrics = ['mae'])
-
 
 # Fit the model
 model.fit(X_train, y_train, epochs=100)
@@ -100,3 +96,7 @@ plot_predictions(train_data=X_train, train_labels=y_train,  test_data=X_test, te
 mae_1 = np.round(float(mae(y_test, y_preds.squeeze()).numpy()), 2)
 mse_1 = np.round(float(mse(y_test, y_preds.squeeze()).numpy()), 2)
 print(f'\nMean Absolute Error = {mae_1}, Mean Squared Error = {mse_1}.')
+
+# Write metrics to file
+with open('metrics.txt', 'w') as outfile:
+    outfile.write(f'\nMean Absolute Error = {mae_1}, Mean Squared Error = {mse_1}.')
