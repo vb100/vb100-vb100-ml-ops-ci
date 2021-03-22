@@ -17,6 +17,7 @@ jobs:
           
           echo "## Model Metrics" >> report.md
           cat metrics.txt >> report.md
+          
           echo "## Prediction Graph" >> report.md
           cml-publish model_results.png --md >> report.md
           
