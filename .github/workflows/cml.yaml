@@ -18,7 +18,7 @@ jobs:
           echo "## Model Metrics" > report.md
           cat metrics.txt >> report.md
           
-          echo -e "## Model Training" >> report.md
+          echo -e "\n## Model Training" >> report.md
           cml-publish model_results.png --md >> report.md
           
           cml-send-comment report.md
