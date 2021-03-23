@@ -9,7 +9,7 @@ def plot_predictions(train_data, train_labels,  test_data, test_labels,  predict
   """
   Plots training data, test data and compares predictions.
   """
-  plt.figure(figsize=(10, 7))
+  plt.figure(figsize=(5.5, 3.65))
   # Plot training data in blue
   plt.scatter(train_data, train_labels, c="b", label="Training data")
   # Plot test data in green
@@ -17,13 +17,15 @@ def plot_predictions(train_data, train_labels,  test_data, test_labels,  predict
   # Plot the predictions in red (predictions were made on the test data)
   plt.scatter(test_data, predictions, c="r", label="Predictions")
   # Show the legend
-  plt.legend(shadow='True')
+  plt.legend(shadow='True', fontsize=7)
   # Set grids
   plt.grid(which='major', c='#cccccc', linestyle='--', alpha=0.5)
   # Some text
-  plt.title('Model Results', family='Arial', fontsize=14)
-  plt.xlabel('X axis values', family='Arial', fontsize=11)
-  plt.ylabel('Y axis values', family='Arial', fontsize=11)
+  plt.title('Model Results', fontsize=12)
+  plt.xlabel('X axis values', fontsize=9)
+  plt.ylabel('Y axis values', fontsize=9)
+  plt.xticks(fontsize=7)
+  plt.yticks(fontsize=7)
   # Show
   plt.savefig('model_results.png', dpi=120)
 
@@ -50,7 +52,6 @@ print(tf.__version__)
 # Create features
 X = np.arange(-100, 100, 4)
 
-
 # Create labels
 y = np.arange(-90, 110, 4)
 
@@ -66,7 +67,6 @@ y_test = y[40:]
 # Take a single example of X
 input_shape = X[0].shape 
 
-
 # Take a single example of y
 output_shape = y[0].shape
 
@@ -80,15 +80,13 @@ model = tf.keras.Sequential([
     #tf.keras.layers.Dense(1)
     ])
 
-
 # Compile the model
 model.compile(loss = tf.keras.losses.mae,
               optimizer = tf.keras.optimizers.SGD(),
               metrics = ['mae'])
 
-
 # Fit the model
-model.fit(X_train, y_train, epochs=100)
+model.fit(X_train, y_train, epochs=50)
 
 
 # Make and plot predictions for model_1
@@ -100,3 +98,7 @@ plot_predictions(train_data=X_train, train_labels=y_train,  test_data=X_test, te
 mae_1 = np.round(float(mae(y_test, y_preds.squeeze()).numpy()), 2)
 mse_1 = np.round(float(mse(y_test, y_preds.squeeze()).numpy()), 2)
 print(f'\nMean Absolute Error = {mae_1}, Mean Squared Error = {mse_1}.')
+
+# Write metrics to file
+with open('metrics.txt', 'w') as outfile:
+    outfile.write(f'\nMean Absolute Error = {mae_1}, Mean Squared Error = {mse_1}.')
