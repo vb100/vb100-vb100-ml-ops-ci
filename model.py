@@ -24,6 +24,8 @@ def plot_predictions(train_data, train_labels,  test_data, test_labels,  predict
   plt.title('Model Results', fontsize=12)
   plt.xlabel('X axis values', fontsize=9)
   plt.ylabel('Y axis values', fontsize=9)
+  plt.xticks(fontsize=7)
+  plt.yticks(fontsize=7)
   # Show
   plt.savefig('model_results.png', dpi=120)
 
