@@ -18,7 +18,8 @@ jobs:
           echo "## Model Metrics" > report.md
           cat metrics.txt >> report.md
           
-          echo -e "\n## Model Training" >> report.md
+          echo -e "\n## Predictions Graph" >> report.md
+          echo "Training and predictions are displayed on the plot below."
           cml-publish model_results.png --md >> report.md
           
           cml-send-comment report.md
