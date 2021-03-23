@@ -19,7 +19,7 @@ jobs:
           cat metrics.txt >> report.md
           
           echo "\n## Predictions Graph" >> report.md
-          echo "Training and predictions are displayed on the plot below."
+          echo "Training and predictions are displayed on the plot below." >> report.md
           cml-publish model_results.png --md >> report.md
           
           cml-send-comment report.md
